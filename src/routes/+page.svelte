@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
   import ColorPalette from "$lib/ColorPalette.svelte";
 
-  const time = new Date(Date.now()).getFullYear() - 2022;
-
+  const time = new Date().getFullYear() - 2022;
   let background = $state("gray");
+
+  $effect(() => {
+    document.documentElement.style.backgroundColor = `var(--color-${background}-900)`;
+  });
 </script>
 
-<div
-  style:background-color={`var(--color-${background}-900)`}
-  class="flex items-center justify-center min-h-screen p-6"
->
+<div class="flex items-center justify-center min-h-screen p-6">
   <div
     class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-8 max-w-xl w-full text-center space-y-6"
   >
@@ -18,7 +18,8 @@
     </h1>
 
     <h2 class="text-lg text-white">
-      shipping vibes & code for over <span class="font-semibold">{time}</span> years.
+      shipping vibes & code for over <span class="font-semibold">{time}</span>
+      years.
     </h2>
 
     <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg">
@@ -39,7 +40,7 @@
 
     <p class="text-sm text-gray-400">
       Get lost at <a
-        href="https://iflyrich.space"
+        href="https://www.iflyrich.space"
         class="underline hover:text-white transition">iflyrich.space</a
       > — infinite loop vibes, no escape 🤘
     </p>
@@ -48,9 +49,9 @@
   </div>
 </div>
 
-<!-- <style lang>
+<style lang="css">
   @reference "tailwindcss";
   :global(html) {
-    background-color: theme(--color-background-900);
+    background-color: var(--color-gray-900);
   }
-</style> -->
+</style>
